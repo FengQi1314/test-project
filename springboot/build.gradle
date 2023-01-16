@@ -16,6 +16,7 @@ dependencies {
     // spring boot
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
     // MySQL、Druid连接词及数据源框架
     implementation 'mysql:mysql-connector-java:8.0.26'

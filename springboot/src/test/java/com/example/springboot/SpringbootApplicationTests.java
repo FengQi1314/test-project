@@ -1,5 +1,6 @@
 package com.example.springboot;
 
+import com.example.springboot.config.RedisUtil;
 import com.example.springboot.dao.TestDAO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +11,23 @@ class SpringbootApplicationTests {
 
     @Autowired
     private TestDAO testDAO;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @Test
     void contextLoads() {
     }
 
     @Test
-    void testDaoAccess(){
+    void testDaoAccess() {
         System.out.println(testDAO.getUser());
+    }
+
+    @Test
+    void testRedis() {
+        System.out.println(redisUtil.set("1", "abc"));
+        System.out.println(redisUtil.get("1"));
+        System.out.println(redisUtil.get("2"));
     }
 
 }
