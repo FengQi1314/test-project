@@ -1,4 +1,4 @@
-package com.example.springboot.config;
+package com.example.springboot.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnection;
