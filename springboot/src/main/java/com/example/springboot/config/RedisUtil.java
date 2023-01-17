@@ -1,37 +1,24 @@
 package com.example.springboot.config;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.connection.jedis.JedisConnection;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectOutputStream;
-import java.nio.ByteBuffer;
 
 @Component
 public class RedisUtil {
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisConnectionFactory redisConnectionFactory;
 
-    public RedisConnection getJedis() {
-        RedisConnectionFactory factory = redisTemplate.getConnectionFactory();
-        return factory.getConnection();
+    private RedisConnection getConn() {
+        return redisConnectionFactory.getConnection();
     }
 
-    public boolean set(String key, Object value) {
-        try (RedisConnection r = getJedis()) {
-            ByteArrayOutputStream bo = new ByteArrayOutputStream();
-            ObjectOutputStream oo = new ObjectOutputStream(bo);
-            oo.writeObject(value);
-            byte[] a = bo.toByteArray();
-            return r.set(key.getBytes(), a);
+    public boolean set(String key, String value) {
+        try (RedisConnection conn = getConn()) {
+            return conn.set(key.getBytes(), value.getBytes());
         } catch (Exception e) {
 
         }
@@ -39,9 +26,8 @@ public class RedisUtil {
     }
 
     public String get(String key) {
-        try (RedisConnection r = getJedis()) {
-            byte[] rs = r.get(key.getBytes());
-            return new String(rs);
+        try (RedisConnection conn = getConn()) {
+            return new String(conn.get(key.getBytes()));
         } catch (Exception e) {
 
         }
