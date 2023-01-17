@@ -5,6 +5,7 @@ import com.example.springboot.module.service.TestService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,13 +32,21 @@ public class TestController {
         Map<String, String> res = new HashMap<>();
         res.put("code", "200");
         res.put("msg", "hello world");
-        logger.info(res);
         return res;
     }
 
     @RequestMapping(value = "/api/testApi3", method = RequestMethod.GET)
     public String testApi3() {
         return testService.getName();
+    }
+
+    @RequestMapping(value = "/api/testApi4", method = RequestMethod.POST)
+    public Map<String, String> testApi4(@RequestBody Map<String, Object> param) {
+        logger.info("post api param : " + param.toString());
+        Map<String, String> res = new HashMap<>();
+        res.put("code", "200");
+        res.put("msg", "hello world");
+        return res;
     }
 
 }

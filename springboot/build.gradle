@@ -23,6 +23,7 @@ dependencies {
     implementation 'com.alibaba:druid-spring-boot-starter:1.2.14'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 
+    // springboot test 框架
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
