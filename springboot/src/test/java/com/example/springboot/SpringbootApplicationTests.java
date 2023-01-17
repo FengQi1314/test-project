@@ -26,8 +26,11 @@ class SpringbootApplicationTests {
     @Test
     void testRedis() {
         System.out.println(redisUtil.set("1", "abc"));
+        System.out.println(redisUtil.set("2", "abc!%fdadfefda"));
+        System.out.println(redisUtil.set("2", new Long[]{1L, 2L, 3L}));
         System.out.println(redisUtil.get("1"));
         System.out.println(redisUtil.get("2"));
+        System.out.println(redisUtil.get("3"));
     }
 
 }
