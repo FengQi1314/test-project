@@ -20,9 +20,11 @@ import java.util.Map;
 
 /**
  * 核心测试类
- *
+ * <p>
  * 注释说明：
+ *
  * @SpringBootTest 默认Mock环境，启动虚拟的web环境，进行模拟; 没有创建隐含的port端口;
+ * @SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT) : 如果需要完整的服务器，进行测试的话。建议使用该方式,每次启动随机端口测试
  * @AutoConfigureMockMvc 自动配置SpringMvcMock，注入时使用 MockMvc 不是 webMockClient
  */
 @SpringBootTest
